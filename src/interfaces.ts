@@ -3,7 +3,7 @@ export interface Inputs {
   readonly GithubToken: string;
   readonly PersonalToken: string;
   readonly PublishBranch: string;
-  readonly PublishDir: string;
+  readonly PublishDir: string[];
   readonly DestinationDir: string;
   readonly ExternalRepository: string;
   readonly AllowEmptyCommit: boolean;

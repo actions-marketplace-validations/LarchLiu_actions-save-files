@@ -1,7 +1,7 @@
 {
-  "name": "actions-github-pages",
-  "version": "3.9.3",
-  "description": "GitHub Actions for GitHub Pages",
+  "name": "actions-save-files",
+  "version": "1.0.0",
+  "description": "GitHub Actions for monorepo to save built files to another branch",
   "main": "lib/index.js",
   "engines": {
     "node": ">=v16.19.0",
@@ -30,22 +30,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peaceiris/actions-gh-pages.git"
+    "url": "git+https://github.com/LarchLiu/actions-save-files.git"
   },
   "keywords": [
     "GitHub Actions",
     "Actions",
     "JavaScript Action",
-    "TypeScript Action",
-    "GitHub Pages",
-    "gh-pages"
+    "TypeScript Action"
   ],
-  "author": "peaceiris",
+  "author": "alex.liu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/peaceiris/actions-gh-pages/issues"
+    "url": "https://github.com/LarchLiu/actions-save-files/issues"
   },
-  "homepage": "https://github.com/peaceiris/actions-gh-pages#readme",
+  "homepage": "https://github.com/LarchLiu/actions-save-files#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",

@@ -1,36 +1,21 @@
 <h2 align="center">
-GitHub Pages Action
+Save Files Action
 </h2>
 
 <div align="center">
-  <img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
 
-[![license](https://img.shields.io/github/license/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/blob/main/LICENSE)
-[![release](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases/latest)
-[![GitHub release date](https://img.shields.io/github/release-date/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases)
-![Test](https://github.com/peaceiris/actions-gh-pages/workflows/Test/badge.svg?branch=main&event=push)
-![Code Scanning](https://github.com/peaceiris/actions-gh-pages/workflows/Code%20Scanning/badge.svg?event=push)
-[![CodeFactor](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages/badge)](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages)
+Forked from [actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
+[![license](https://img.shields.io/github/license/LarchLiu/actions-save-files.svg)](https://github.com/LarchLiu/actions-save-files/blob/main/LICENSE)
+[![release](https://img.shields.io/github/release/LarchLiu/actions-save-files.svg)](https://github.com/LarchLiu/actions-save-files/releases/latest)
+[![GitHub release date](https://img.shields.io/github/release-date/LarchLiu/actions-save-files.svg)](https://github.com/LarchLiu/actions-save-files/releases)
 
 </div>
-
-> **Note**
->
-> See also the GitHub official GitHub Pages Action first.
->
-> - [GitHub Pages now uses Actions by default | The GitHub Blog](https://github.blog/2022-08-10-github-pages-now-uses-actions-by-default/)
-> - [GitHub Pages: Custom GitHub Actions Workflows (beta) | GitHub Changelog](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/)
-
-This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
-This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, mdBook, Next, Nuxt, and so on.)
-
-[Static Site Generators]: https://jamstack.org/generators/
 
 The next example step will deploy `./public` directory to the remote `gh-pages` branch.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v1
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -71,7 +56,7 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 | macos-latest | ✅️ | ✅️ | ✅️ |
 | windows-latest | ✅️ | (2) | ✅️ |
 
-2. WIP, See [Issue #87](https://github.com/peaceiris/actions-gh-pages/issues/87)
+2. WIP, See [Issue #87](https://github.com/LarchLiu/actions-save-files/issues/87)
 
 
 
@@ -170,7 +155,7 @@ jobs:
         run: hugo --minify
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
         # below accordingly.
@@ -200,7 +185,7 @@ A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -214,7 +199,7 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     publish_dir: ./public
@@ -226,7 +211,7 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     personal_token: ${{ secrets.PERSONAL_TOKEN }}
     publish_dir: ./public
@@ -239,7 +224,7 @@ The default is `gh-pages`.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_branch: your-branch  # default: gh-pages
@@ -252,7 +237,7 @@ Only the contents of this dir are pushed to GitHub Pages branch, `gh-pages` by d
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./out  # default: public
@@ -261,13 +246,13 @@ Only the contents of this dir are pushed to GitHub Pages branch, `gh-pages` by d
 ### ⭐️ Deploy to Subdirectory `destination_dir`
 
 *This feature is on beta.*
-*Any feedback is welcome at [Issue #324](https://github.com/peaceiris/actions-gh-pages/issues/324)*
+*Any feedback is welcome at [Issue #324](https://github.com/LarchLiu/actions-save-files/issues/324)*
 
 A destination subdirectory on a publishing branch. The default is empty.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     destination_dir: subdir
@@ -276,7 +261,7 @@ A destination subdirectory on a publishing branch. The default is empty.
 ### ⭐️ Filter publishing assets `exclude_assets`
 
 *This feature is on beta.*
-*Any feedback is welcome at [Issue #163](https://github.com/peaceiris/actions-gh-pages/issues/163)*
+*Any feedback is welcome at [Issue #163](https://github.com/LarchLiu/actions-save-files/issues/163)*
 
 Set files or directories to exclude from publishing assets.
 The default is `.github`.
@@ -284,7 +269,7 @@ Values should be split with a comma.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: '.github,exclude-file1,exclude-file2'
@@ -294,7 +279,7 @@ Set `exclude_assets` to empty for including the `.github` directory to deploymen
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}   # Recommended for this usage
     # personal_token: ${{ secrets.PERSONAL_TOKEN }} # An alternative
@@ -306,7 +291,7 @@ The `exclude_assets` option supports glob patterns.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: '.github,exclude-file.txt,exclude-dir/**.txt'
@@ -321,7 +306,7 @@ For more details about the `CNAME` file, read the official documentation: [Manag
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -339,7 +324,7 @@ Bypassing Jekyll makes the deployment faster and is necessary if you are deployi
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -356,7 +341,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -376,7 +361,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -384,7 +369,7 @@ For example:
 ```
 
 With the v3, this option does not support working with the force_orphan option. The next major release (version 4) will support this.
-See [the issue #455](https://github.com/peaceiris/actions-gh-pages/issues/455)
+See [the issue #455](https://github.com/LarchLiu/actions-save-files/issues/455)
 
 ### ⭐️ Deploy to external repository `external_repository`
 
@@ -395,7 +380,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     external_repository: username/external-repository
@@ -422,7 +407,7 @@ This allows you to make your publish branch with only the latest commit.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -436,7 +421,7 @@ A commit is always created with the same user.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -453,7 +438,7 @@ When we create a commit with a message `docs: Update some post`, a deployment co
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -467,7 +452,7 @@ use the `full_commit_message` option instead of the `commit_message` option.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: LarchLiu/actions-save-files@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -507,7 +492,7 @@ jobs:
           echo "DEPLOY_TAG_NAME=deploy-${TAG_NAME}" >> "${GITHUB_OUTPUT}"
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -599,7 +584,7 @@ Alternatively, you can [configure the default `GITHUB_TOKEN` permissions](https:
 We recommend you to use the latest and specific release of this action for stable CI/CD.
 It is useful to watch this repository (release only) to check the [latest release] of this action.
 
-[latest release]: https://github.com/peaceiris/actions-gh-pages/releases
+[latest release]: https://github.com/LarchLiu/actions-save-files/releases
 
 For continuous updating, we can use the GitHub native Dependabot.
 Here is an example configuration of the bot. The config file is located in `.github/dependabot.yml`.
@@ -707,7 +692,7 @@ jobs:
       - run: npm run build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -759,7 +744,7 @@ jobs:
       - run: npm run build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -814,7 +799,7 @@ jobs:
       - run: yarn export
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -867,7 +852,7 @@ jobs:
       - run: npm run generate
 
       - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -928,7 +913,7 @@ jobs:
       - run: yarn build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -992,7 +977,7 @@ jobs:
       - run: mkdocs build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1035,7 +1020,7 @@ jobs:
       - run: mdbook build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1085,7 +1070,7 @@ jobs:
         run: flutter build web
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1136,7 +1121,7 @@ jobs:
         # provide --output=<output-file> option for `elm make` and remove this step
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1189,7 +1174,7 @@ jobs:
       - run: publish-cli generate
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: LarchLiu/actions-save-files@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1204,9 +1189,9 @@ jobs:
 
 ## License
 
-- [MIT License - peaceiris/actions-gh-pages]
+- [MIT License - LarchLiu/actions-save-files]
 
-[MIT License - peaceiris/actions-gh-pages]: https://github.com/peaceiris/actions-gh-pages/blob/main/LICENSE
+[MIT License - LarchLiu/actions-save-files]: https://github.com/LarchLiu/actions-save-files/blob/main/LICENSE
 
 
 

@@ -65,28 +65,35 @@ export async function copyAssets(
 }
 
 export async function setRepo(inps: Inputs, remoteURL: string, workDir: string): Promise<void> {
-  const publishDir = path.isAbsolute(inps.PublishDir)
-    ? inps.PublishDir
-    : path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
+  const publishDir = inps.PublishDir.map(d => {
+    return path.isAbsolute(d) ? d : path.join(`${process.env.GITHUB_WORKSPACE}`, d);
+  });
 
   if (path.isAbsolute(inps.DestinationDir)) {
     throw new Error('destination_dir should be a relative path');
   }
-  const destDir = ((): string => {
-    if (inps.DestinationDir === '') {
-      return workDir;
-    } else {
-      return path.join(workDir, inps.DestinationDir);
-    }
+  const destDir = ((): string[] => {
+    return inps.PublishDir.map(d => {
+      return path.join(workDir, d);
+    });
+    // if (inps.DestinationDir === '') {
+    //   return workDir;
+    // } else {
+    //   return path.join(workDir, inps.DestinationDir);
+    // }
   })();
 
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
   if (inps.ForceOrphan) {
-    await createDir(destDir);
+    for (let i = 0; i < destDir.length; i++) {
+      await createDir(destDir[i]);
+    }
     core.info(`[INFO] chdir ${workDir}`);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, destDir, inps.ExcludeAssets);
+    for (let i = 0; i < publishDir.length; i++) {
+      await copyAssets(publishDir[i], destDir[i], inps.ExcludeAssets);
+    }
     return;
   }
 
@@ -108,34 +115,39 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
       ['clone', '--depth=1', '--single-branch', '--branch', inps.PublishBranch, remoteURL, workDir],
       options
     );
-    if (result.exitcode === 0) {
-      await createDir(destDir);
+    for (let i = 0; i < destDir.length; i++) {
+      if (result.exitcode === 0) {
+        await createDir(destDir[i]);
 
-      if (inps.KeepFiles) {
-        core.info('[INFO] Keep existing files');
+        if (inps.KeepFiles) {
+          core.info('[INFO] Keep existing files');
+        } else {
+          core.info(`[INFO] clean up ${destDir}`);
+          core.info(`[INFO] chdir ${destDir}`);
+          process.chdir(destDir[i]);
+          await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+        }
+
+        core.info(`[INFO] chdir ${workDir}`);
+        process.chdir(workDir);
+        await copyAssets(publishDir[i], destDir[i], inps.ExcludeAssets);
+        // return;
       } else {
-        core.info(`[INFO] clean up ${destDir}`);
-        core.info(`[INFO] chdir ${destDir}`);
-        process.chdir(destDir);
-        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+        throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
       }
-
-      core.info(`[INFO] chdir ${workDir}`);
-      process.chdir(workDir);
-      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
-      return;
-    } else {
-      throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
+    return;
   } catch (error) {
     if (error instanceof Error) {
-      core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
-      core.info(`[INFO] ${error.message}`);
-      await createDir(destDir);
-      core.info(`[INFO] chdir ${workDir}`);
-      process.chdir(workDir);
-      await createBranchForce(inps.PublishBranch);
-      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
+      for (let i = 0; i < destDir.length; i++) {
+        core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
+        core.info(`[INFO] ${error.message}`);
+        await createDir(destDir[i]);
+        core.info(`[INFO] chdir ${workDir}`);
+        process.chdir(workDir);
+        await createBranchForce(inps.PublishBranch);
+        await copyAssets(publishDir[i], destDir[i], inps.ExcludeAssets);
+      }
       return;
     } else {
       throw new Error('unexpected error');

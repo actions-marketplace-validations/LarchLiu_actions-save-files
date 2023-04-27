@@ -110,7 +110,7 @@ describe('getInputs()', () => {
     expect(inps.GithubToken).toMatch('');
     expect(inps.PersonalToken).toMatch('');
     expect(inps.PublishBranch).toMatch('gh-pages');
-    expect(inps.PublishDir).toMatch('public');
+    expect(inps.PublishDir).toEqual(['public']);
     expect(inps.DestinationDir).toMatch('');
     expect(inps.ExternalRepository).toMatch('');
     expect(inps.AllowEmptyCommit).toBe(false);
@@ -132,7 +132,7 @@ describe('getInputs()', () => {
     process.env['INPUT_GITHUB_TOKEN'] = 'test_github_token';
     process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
     process.env['INPUT_PUBLISH_BRANCH'] = 'master';
-    process.env['INPUT_PUBLISH_DIR'] = 'out';
+    process.env['INPUT_PUBLISH_DIR'] = 'out, dist';
     process.env['INPUT_DESTINATION_DIR'] = 'subdir';
     process.env['INPUT_EXTERNAL_REPOSITORY'] = 'user/repo';
     process.env['INPUT_ALLOW_EMPTY_COMMIT'] = 'true';
@@ -154,7 +154,7 @@ describe('getInputs()', () => {
     expect(inps.GithubToken).toMatch('test_github_token');
     expect(inps.PersonalToken).toMatch('test_personal_token');
     expect(inps.PublishBranch).toMatch('master');
-    expect(inps.PublishDir).toMatch('out');
+    expect(inps.PublishDir).toEqual(['out', 'dist']);
     expect(inps.DestinationDir).toMatch('subdir');
     expect(inps.ExternalRepository).toMatch('user/repo');
     expect(inps.AllowEmptyCommit).toBe(true);

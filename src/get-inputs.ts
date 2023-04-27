@@ -53,7 +53,10 @@ export function getInputs(): Inputs {
     GithubToken: core.getInput('github_token'),
     PersonalToken: core.getInput('personal_token'),
     PublishBranch: core.getInput('publish_branch'),
-    PublishDir: core.getInput('publish_dir'),
+    PublishDir: core
+      .getInput('publish_dir')
+      .split(',')
+      .map(s => s.trim()),
     DestinationDir: core.getInput('destination_dir'),
     ExternalRepository: core.getInput('external_repository'),
     AllowEmptyCommit: isBoolean(core.getInput('allow_empty_commit')),
