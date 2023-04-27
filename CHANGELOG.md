@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.3](https://github.com/LarchLiu/actions-save-files/compare/v1.0.2...v1.0.3) (2023-04-27)
+
+
+### chore
+
+* package version ([dd54b5e](https://github.com/LarchLiu/actions-save-files/commit/dd54b5edf5b94113398c27229a10903106f9b2ed))
+
+
+
 ## [1.0.1](https://github.com/LarchLiu/actions-save-files/compare/v1.0.0...v1.0.1) (2023-04-27)
 
 
