@@ -1,6 +1,6 @@
 {
   "name": "actions-save-files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub Actions for monorepo to save built files to another branch",
   "main": "lib/index.js",
   "engines": {

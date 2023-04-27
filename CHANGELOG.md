@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.1](https://github.com/LarchLiu/actions-save-files/compare/v1.0.0...v1.0.1) (2023-04-27)
+
+
+### fix
+
+* release.sh ([0cee612](https://github.com/LarchLiu/actions-save-files/commit/0cee612c88826d9f633ab70b586473b4f02fec52))
+
+
+
 ## 1.0.0 (2023-04-27)
 
 
