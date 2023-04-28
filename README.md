@@ -5,20 +5,27 @@ Save Files Action
 <div align="center">
 
 Forked from [actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
+
+## Saving files across multiple directories to a publish branch, it is useful for monorepo.
+
 [![license](https://img.shields.io/github/license/LarchLiu/actions-save-files.svg)](https://github.com/LarchLiu/actions-save-files/blob/main/LICENSE)
 [![release](https://img.shields.io/github/release/LarchLiu/actions-save-files.svg)](https://github.com/LarchLiu/actions-save-files/releases/latest)
 [![GitHub release date](https://img.shields.io/github/release-date/LarchLiu/actions-save-files.svg)](https://github.com/LarchLiu/actions-save-files/releases)
+![Test](https://github.com/LarchLiu/actions-save-files/workflows/Test/badge.svg?branch=main&event=push)
+![Code Scanning](https://github.com/LarchLiu/actions-save-files/workflows/Code%20Scanning/badge.svg?event=push)
+
 
 </div>
 
-The next example step will deploy `./public` directory to the remote `gh-pages` branch.
+The next example step will deploy `./vue/dist` and `./app/publish` directory to the remote `publish` branch.
 
 ```yaml
 - name: Deploy
   uses: LarchLiu/actions-save-files@v1
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
-    publish_dir: ./public
+    publish_branch: publish
+    publish_dir: ./vue/dist, ./app/publish
 ```
 
 For newbies of GitHub Actions:
