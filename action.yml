@@ -1,5 +1,5 @@
 name: 'Save files action'
-description: 'GitHub Actions for monorepo to save built files to another branch'
+description: 'GitHub Actions can be used to save files across multiple directories to a publish branch, which is useful for monorepos.'
 author: 'alex.liu'
 runs:
   using: 'node16'
